@@ -26,9 +26,9 @@ public:
 	void setMarkaSamochodu(string);
 	void setModelSamochodu(string);
 	string getModelSamochodu();
+	string getMarkaSamochodu();
 	long getCena();
 	int getWiek();
 	int getPojemnosc();
 	friend ostream& operator<<(ostream &wyjscie, const Samochód & s);
 };
-

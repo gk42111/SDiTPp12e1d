@@ -7,29 +7,29 @@
 using namespace std;
 
 int main() {
-	string kolorNadwozia[] = { "bia³y","¿ó³ty","zielony","niebieski","pomarañczowy","metalik","czarny","br¹zowy","fioletowy","czerwony" };
+	string kolorNadwozia[] = { "bia?y","?ó?ty","zielony","niebieski","pomara?czowy","metalik","czarny","br?zowy","fioletowy","czerwony" };
 	int pojemnoscSilnika[] = { 1000,2000,3000,4000,5000 };
 	int iloscDrzwi[] = { 3, 5 };
-	vector<string> markaSamochodu{ "A","B","C","D","E" };
-	vector<string> modeleSamochoduA{ "1","2","3","4","5","6","7","8" };
-	vector<string> modeleSamochoduB{ "1","2","3","4","5","6","7","8" };
-	vector<string> modeleSamochoduC{ "1","2","3","4","5","6","7","8" };
-	vector<string> modeleSamochoduD{ "1","2","3","4","5","6","7","8" };
-	vector<string> modeleSamochoduE{ "1","2","3","4","5","6","7","8" };
+	vector<string> markaSamochodu{ "Kia","Honda","Mazda","Volkswagen","Fiat" };
+	vector<string> modeleSamochoduA{ "Sportage","Sorento","Ceed","Rio","Optima","Stinger","Picanto","Stonic" };
+	vector<string> modeleSamochoduB{ "Civic","CRV","Jazz","HRV","Accord","NSX","Varadero","Prelado" };
+	vector<string> modeleSamochoduC{ "CX-7","CX-3","3","2","6","CX-5","RX-8","MX-5" };
+	vector<string> modeleSamochoduD{ "Tiguan","Polo","Arteon","Touran","Scirocco","Golf","Passat","Amarok" };
+	vector<string> modeleSamochoduE{ "500","126p","Panda","Tipo","Punto","Ducato","Uno","Cinquecento" };
 	std::map<int, Samochód, std::less<>> Obj;
-	Samochód samochod[10000];
+	Samochód* samochod = new Samochód[10000];
 	for (int i = 0; i < 10000; i++) {
 		samochod[i].setCena(std::rand() % 999001 + 1000);
 		samochod[i].setIloscDrzwi(iloscDrzwi[std::rand() % 2 + 0]);
 		samochod[i].setKolorNadwozia(kolorNadwozia[std::rand() % 10 + 0]);
 		samochod[i].setMarkaSamochodu(markaSamochodu[std::rand() % 5 + 0]);
-		if (samochod[i].getModelSamochodu() == "A")
+		if (samochod[i].getMarkaSamochodu() == "Kia")
 			samochod[i].setModelSamochodu(modeleSamochoduA[std::rand() % 8 + 0]);
-		else if (samochod[i].getModelSamochodu() == "B")
+		else if (samochod[i].getMarkaSamochodu() == "Honda")
 			samochod[i].setModelSamochodu(modeleSamochoduB[std::rand() % 8 + 0]);
-		else if (samochod[i].getModelSamochodu() == "C")
+		else if (samochod[i].getMarkaSamochodu() == "Mazda")
 			samochod[i].setModelSamochodu(modeleSamochoduC[std::rand() % 8 + 0]);
-		else if (samochod[i].getModelSamochodu() == "D")
+		else if (samochod[i].getMarkaSamochodu() == "Volkswagen")
 			samochod[i].setModelSamochodu(modeleSamochoduD[std::rand() % 8 + 0]);
 		else
 			samochod[i].setModelSamochodu(modeleSamochoduE[std::rand() % 8 + 0]);
@@ -37,6 +37,7 @@ int main() {
 		samochod[i].setRokProdukcji(std::rand() % 51 + 1970);
 		Obj.insert({ i, samochod[i] });
 	}
+
 
 	for (std::map<int, Samochód>::iterator it = Obj.begin(); it != Obj.end(); it++)
 	{
@@ -54,10 +55,10 @@ int main() {
 	});
 	cout << endl;
 
-	for (int i = 0; i < 10000; i++){
+	for (int i = 0; i < 10000; i++) {
 		cout << posortowaneWgCeny[i];
 	}
-	
+
 	vector<Samochód> posortowaneWgWieku;
 	for (int i = 0; i < 10000; i++) {
 		posortowaneWgWieku.push_back(samochod[i]);
@@ -88,8 +89,10 @@ int main() {
 
 	std::map<int, Samochód, std::less<>> Obj2;
 	for (int i = 0; i < 10000; i++) {
-		Obj2.insert({i,samochod[i]});
+		Obj2.insert({ i,samochod[i] });
 	}
+
+	delete[] samochod;
 
 	system("pause");
 	return 0;

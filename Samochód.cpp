@@ -65,6 +65,11 @@ string Samochód::getModelSamochodu()
 	return modelSamochodu;
 }
 
+string Samochód::getMarkaSamochodu()
+{
+	return markaSamochodu;
+}
+
 long Samochód::getCena()
 {
 	return cena;
